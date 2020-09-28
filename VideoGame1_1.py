@@ -42,47 +42,50 @@ def Configuraciones():
     poisonRandomY = random.choice(coordY)
 
 
-# window set up
-win = GraphWin("SNAKE", width, height, autoflush = False)
-win.setBackground(color_rgb(500,500,500))
+def Pantalla():
+    Configuraciones()
+    win = GraphWin("SNAKE", width, height, autoflush = False)
+    win.setBackground(color_rgb(500,500,500))
 
-# grid
-lineX = 20
-while lineX < width:
-    gridX = Line(Point(lineX,0),Point(lineX,gridHeight))
-    gridX.setOutline(color_rgb(25,25,25))
-    gridX.draw(win)
-    lineX += 20
-lineY = 20
-while lineY <= gridHeight:
-    gridX = Line(Point(0,lineY),Point(width,lineY))
-    gridX.setOutline(color_rgb(25,25,25))
-    gridX.draw(win)
-    lineY += 20
+def cuadrícula():
+    Configuraciones()
+    lineX = 20
+    while lineX < width:
+        gridX = Line(Point(lineX,0),Point(lineX,gridHeight))
+        gridX.setOutline(color_rgb(25,25,25))
+        gridX.draw(win)
+        lineX += 20
+    lineY = 20
+    while lineY <= gridHeight:
+        gridX = Line(Point(0,lineY),Point(width,lineY))
+        gridX.setOutline(color_rgb(25,25,25))
+        gridX.draw(win)
+        lineY += 20
 
-# snake banner
-UI = Rectangle(Point(0,400),Point(width,height))
-UI.setFill(color_rgb(102,51,0))
-UI.setOutline(color_rgb(102,51,0))
-UI.draw(win)
-snakeTitle = Text(Point(width/2,420),"SNAKE")
-snakeTitle.setTextColor("blue")
-snakeTitle.setSize(20)
-snakeTitle.draw(win)
-scoreTitle = Text(Point(320,424),"SCORE")
-scoreTitle.setTextColor("white")
-scoreTitle.setSize(10)
-scoreTitle.draw(win)
-scoreUI = Text(Point(320,435),score)
-scoreUI.setTextColor("white")
-scoreUI.setSize(10)
-scoreUI.draw(win)
+def Cuerpo_De_Serpiente():
+    UI = Rectangle(Point(0,400),Point(width,height))
+    UI.setFill(color_rgb(102,51,0))
+    UI.setOutline(color_rgb(102,51,0))
+    UI.draw(win)
+    snakeTitle = Text(Point(width/2,420),"SNAKE")
+    snakeTitle.setTextColor("blue")
+    snakeTitle.setSize(20)
+    snakeTitle.draw(win)
+    scoreTitle = Text(Point(320,424),"SCORE")
+    scoreTitle.setTextColor("white")
+    scoreTitle.setSize(10)
+    scoreTitle.draw(win)
+    scoreUI = Text(Point(320,435),score)
+    scoreUI.setTextColor("white")
+    scoreUI.setSize(10)
+    scoreUI.draw(win)
+    player = {}
+    player[0] = Rectangle(Point(x-20-radius,y-radius), Point(x-20+radius, y+radius))
+    player[1] = Rectangle(Point(x-40-radius,y-radius), Point(x-40+radius, y+radius))
+    player[2] = Rectangle(Point(x-60-radius,y-radius), Point(x-60+radius, y+radius))
 
-# make player
-player = {}
-player[0] = Rectangle(Point(x-20-radius,y-radius), Point(x-20+radius, y+radius))
-player[1] = Rectangle(Point(x-40-radius,y-radius), Point(x-40+radius, y+radius))
-player[2] = Rectangle(Point(x-60-radius,y-radius), Point(x-60+radius, y+radius))
+
+
 
 # make poison
 poison = {}
